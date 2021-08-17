@@ -1,0 +1,12 @@
+<div [ngClass]="['banner', type]">
+    <img class="banner-image"  [attr.src]="imageSrc">
+
+    <div class="banner-text">
+        <div class="banner-title">{{title}}</div>
+        <div class="banner-subtitle">{{subtitle}}</div>
+    </div>
+
+    <button mat-mini-fab class="banner-favorite-btn" aria-label="Favoritar" [color]="favorited ? 'accent' : '#fff'" (click)="toggleFavorite()">
+        <mat-icon [color]="favorited ? 'white' : 'accent'">favorite_border</mat-icon>
+    </button>
+</div>

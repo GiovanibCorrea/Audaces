@@ -1,0 +1,100 @@
+<mat-card class="card">
+    <div class="card-title audaces-h1">
+        Teste Audaces
+    </div>
+
+    <div class="line" fxLayout="row">
+        <div class="line-title" fxHide.xs fxHide.sm>
+            Sequência
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="flex-start">  
+            <div >
+                <div fxLayout="row wrap" fxLayoutGap="10px">        
+                    <div class="line-item" fxFlex.xs="calc(50% - 10px)" fxFlex.sm="calc(50% - 10px)" fxFlex="calc(25% - 10px)">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Primeiro número</mat-label>
+                            <input matInput [(ngModel)]="sequence[0]" type="number">                
+                        </mat-form-field>
+                    </div>
+
+                    <div class="line-item" fxFlex.xs="calc(50% - 10px)" fxFlex.sm="calc(50% - 10px)" fxFlex="calc(25% - 10px)">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Segundo número</mat-label>
+                            <input matInput [(ngModel)]="sequence[1]" type="number">                
+                        </mat-form-field>
+                    </div>
+
+                    <div class="line-item" fxFlex.xs="calc(50% - 10px)" fxFlex.sm="calc(50% - 10px)" fxFlex="calc(25% - 10px)">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Terceiro número</mat-label>
+                            <input matInput [(ngModel)]="sequence[2]" type="number">                
+                        </mat-form-field>
+                    </div>
+
+                    <div class="line-item" fxFlex.xs="calc(50% - 10px)" fxFlex.sm="calc(50% - 10px)" fxFlex="calc(25% - 10px)">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Quarto número</mat-label>
+                            <input matInput [(ngModel)]="sequence[3]" type="number">                
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxLayout="row wrap" fxLayoutGap="10px">        
+                    <div *ngFor="let aditionalField of aditionalFields; let i = index; trackBy:customTrackBy" class="line-item" fxFlex.xs="calc(50% - 10px)" fxFlex.sm="calc(50% - 10px)" fxFlex="calc(25% - 10px)">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Número adicional</mat-label>
+                            <input matInput [(ngModel)]="aditionalFields[i]" type="number">                
+                        </mat-form-field>  
+                    </div>                    
+                </div> 
+            </div>
+        </div> 
+        
+        <button class="line-add-btn" mat-fab aria-label="Favoritar" (click)="addField()">
+            <mat-icon color="#EAEAEA"> add</mat-icon>
+        </button>
+    </div>
+
+    <div class="line" fxLayout="row">
+        <div class="line-title" fxHide.xs fxHide.sm>
+            Target
+        </div>
+
+        <div fxLayout="row wrap"  fxLayoutAlign="flex-start" class="line-target">  
+            <div fxFlex="100%">
+                <div fxLayout="row wrap" fxLayoutGap="10px">        
+                    <div class="line-item" fxFlex.xs="calc(50% - 10px)" fxFlex.sm="calc(50% - 10px)" fxFlex="calc(25% - 10px)">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Target</mat-label>
+                            <input matInput type="text" [(ngModel)]="target" type="number">                
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <div class="card-actions">
+        <button mat-button (click)="clearFields()">LIMPAR CAMPOS</button>
+        <button mat-flat-button color="primary" (click)="combine()">COMBINAR</button>
+    </div>
+</mat-card>
+
+<mat-card class="card" *ngIf="combinations">
+    <div class="card-title audaces-h1">
+        Combinações possíveis
+    </div>
+
+    <div class="line" *ngIf="combinations.length">
+        <div class="line-combinations" fxLayout="row wrap" fxLayoutGap="25px"  fxLayoutAlign="center center">  
+            <div class="line-item" *ngFor="let combination of combinations; let i = index" fxFlex.xs="calc(50% - 25px)" fxFlex.sm="calc(50% - 25px)" fxFlex="calc(25% - 25px)">                
+                <div class="line-combination-field background--form-item">{{combination}}</div>                              
+            </div>
+        </div>
+    </div>
+
+    <div class="card-no-combinations" *ngIf="!combinations.length">
+        Nenhuma combinação foi encontrada
+    </div>
+</mat-card>
